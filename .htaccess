@@ -1,0 +1,26 @@
+# .htaccess - Controle Financeiro
+Options -Indexes
+
+# Permitir acesso aos arquivos PHP
+<FilesMatch "\.(php)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Permitir acesso aos arquivos estáticos
+<FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Proteger arquivos sensíveis
+<FilesMatch "^(\.htaccess|\.htpasswd|\.git|\.env|config\.php|db_config\.php)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Redirecionar erro 403 para index
+ErrorDocument 403 /controle-financeiro/login.php
+
+# Redirecionar erro 404 para login
+ErrorDocument 404 /controle-financeiro/login.php
